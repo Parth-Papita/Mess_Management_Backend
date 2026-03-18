@@ -1,9 +1,9 @@
 const sequelize = require('./config/db');
-const Student = require('./models/student');
-const Transaction = require('./models/transaction');
-const RebateRequest = require('./models/rebaterequest');
-const Feedback = require('./models/feedback');
-const ExtraItem = require('./models/extraitem');
+const Student = require('./models/Student');
+const Transaction = require('./models/Transaction');
+const RebateRequest = require('./models/Rebate');
+const Feedback = require('./models/Feedback');
+const ExtraItem = require('./models/ExtraItem');
 
 // ==========================================
 // STUDENT FUNCTIONS
