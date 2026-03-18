@@ -1,8 +1,8 @@
 const sequelize = require('./config/db');
-const Student = require('./models*/Student');
-const Transaction = require('./models*/Transaction');
-const RebateRequest = require('./models*/Rebate');
-const Feedback = require('./models*/Feedback');
+const Student = require('./models/Student');
+const Transaction = require('./models/Transaction');
+const RebateRequest = require('./models/Rebate');
+const Feedback = require('./models/Feedback');
 
 async function testDatabase() {
   try {
