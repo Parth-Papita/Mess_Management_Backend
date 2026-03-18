@@ -1,20 +1,19 @@
 const sequelize = require('./config/db');
-const Student = require('./models/student');
-const MessManager = require('./models/messmanager');
-const Menu = require('./models/menu');
-const Feedback = require('./models/feedback');
-const Transaction = require('./models/transaction');
-// Assuming your partner named the exported models this way:
-const RebateRequest = require('./models/rebaterequest'); 
-const ExtraItem = require('./models/extraitem');
+const Student = require('./models/Student');
+const MessManager = require('./models/MessManager');
+const Menu = require('./models/Menu');
+const Feedback = require('./models/Feedback');
+const Transaction = require('./models/Transaction');
+const RebateRequest = require('./models/Rebate');
+const ExtraItem = require('./models/ExtraItem');
 
 const seedData = async () => {
   try {
-    await sequelize.sync({ force: true }); // Resets database
+    await sequelize.sync({ force: true }); 
 
     console.log('⏳ Seeding Managers & Students...');
     await MessManager.bulkCreate([
-      { adminId: 'ADMIN01', name: 'Ujjwal Kajal', password: 'hashedpassword1', role: 'Admin' }
+      { adminId: 'ADMIN01', name: 'Ujjwal Kajal', password: 'hashedpassword', role: 'Admin' }
     ]);
 
     await Student.bulkCreate([
@@ -30,14 +29,15 @@ const seedData = async () => {
     ]);
 
     await ExtraItem.bulkCreate([
-      { itemName: 'Paneer Curry', price: 50.00, isAvailable: true },
-      { itemName: 'Ice Cream', price: 30.00, isAvailable: true }
+      { itemName: 'Paneer Curry', price: 50.00, stockQuantity: 20, isAvailable: true },
+      { itemName: 'Ice Cream', price: 30.00, stockQuantity: 50, isAvailable: true }
     ]);
 
     console.log('⏳ Seeding Transactions, Rebates & Feedback...');
     await Transaction.bulkCreate([
-      { studentRollNo: '240252', amount: 4500.00, type: 'Monthly Fee', status: 'Completed' },
-      { studentRollNo: '240252', amount: 50.00, type: 'Extra Item', status: 'Completed' }
+      { studentRollNo: '240252', itemName: null, amount: 4500.00, type: 'Monthly Fee', status: 'Completed' },
+      { studentRollNo: '240252', itemName: 'Paneer Curry', amount: 50.00, type: 'Extra Item', status: 'Completed' },
+      { studentRollNo: '240804', itemName: 'Ice Cream', amount: 60.00, type: 'Extra Item', status: 'Completed' }
     ]);
 
     await RebateRequest.bulkCreate([
@@ -45,11 +45,12 @@ const seedData = async () => {
     ]);
 
     await Feedback.bulkCreate([
-      { studentRollNo: '240252', rating: 4, category: 'Food Quality', comment: 'Paneer was great.' }
+      { studentRollNo: '240252', rating: 4, category: 'Food Quality', comment: 'Paneer was great.' },
+      { studentRollNo: '240804', rating: 5, category: 'Service', comment: 'Very fast today.' }
     ]);
 
     console.log('✅ Database successfully seeded!');
-    process.exit();
+    process.exit(0);
   } catch (error) {
     console.error('❌ Seeding failed:', error);
     process.exit(1);
