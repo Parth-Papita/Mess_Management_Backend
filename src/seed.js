@@ -1,11 +1,11 @@
 const sequelize = require('./config/db');
-const Student = require('./models/Student');
-const MessManager = require('./models/MessManager');
-const Menu = require('./models/Menu');
-const Feedback = require('./models/Feedback');
-const Transaction = require('./models/Transaction');
-const RebateRequest = require('./models/Rebate');
-const ExtraItem = require('./models/ExtraItem');
+const Student = require('./models*/Student');
+const MessManager = require('./models*/MessManager');
+const Menu = require('./models*/Menu');
+const Feedback = require('./models*/Feedback');
+const Transaction = require('./models*/Transaction');
+const RebateRequest = require('./models*/Rebate');
+const ExtraItem = require('./models*/ExtraItem');
 
 const seedData = async () => {
   try {
